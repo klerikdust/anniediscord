@@ -12,6 +12,12 @@ module.exports = {
      * @type {string}
      */
     name: `setwallet`,
+    name_localizations: {
+        fr: `définir le portefeuille`
+    },
+    description_localizations: {
+        fr: `Associer le portefeuille à votre utilisateur`
+    },
     /**
      * Define accepted aliases. User will be able to call the command with these alternative names.
      * @required
@@ -62,18 +68,36 @@ module.exports = {
     options: [{
         name: `remove`, // Must be all lowercase
         description: `Remove your address`,
+        name_localizations: {
+            fr: `retirer`
+        },
+        description_localizations: {
+            fr: `Supprimez votre adresse`
+        },
         type: ApplicationCommandOptionType.Subcommand
-    },{
+    }, {
         name: `address`, // Must be all lowercase
         description: `Your address you would like to link`,
+        name_localizations: {
+            fr: `adresse`
+        },
+        description_localizations: {
+            fr: `Votre adresse à laquelle vous souhaitez lier`
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set a wallet address.`,
+            name_localizations: {
+                fr: `ensemble`
+            },
+            description_localizations: {
+                fr: `Définissez une adresse de portefeuille.`
+            },
             required: true,
             type: ApplicationCommandOptionType.String
         }]
-        }, 
+    },
     ],
     /**
      * Use 'ApplicationCommandType' to define the command's type. (Most of the time it will always be 'ChatInput')
@@ -116,17 +140,17 @@ module.exports = {
      */
     async Iexecute(client, reply, interaction, options, locale) {
         if (options.getSubcommand() === `remove`) return this.delete(client, reply, interaction)
-        if (options.getSubcommand() === `address`){
+        if (options.getSubcommand() === `address`) {
             const arg = options.getString(`set`)
             return this.run(client, reply, interaction, arg)
         }
     },
     async run(client, reply, messageRef, arg) {
         client.db.custom.setWalletAddress(messageRef.member.user.id, arg)
-        return await reply.send(`Your address has been set`,{ephemeral: true})
+        return await reply.send(`Your address has been set`, { ephemeral: true })
     },
     async delete(client, reply, messageRef) {
         client.db.custom.deleteWalletAddress(messageRef.member.user.id)
-        return await reply.send(`Your address has been removed`,{ephemeral: true})
+        return await reply.send(`Your address has been removed`, { ephemeral: true })
     }
 }

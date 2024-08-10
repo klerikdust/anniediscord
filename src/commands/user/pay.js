@@ -11,6 +11,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `pay`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`pay`, `transfer`, `transfers`, `share`, `give`],
     description: `Share artcoins with your friends!`,
     usage: `pay <User>`,
@@ -23,15 +29,33 @@ module.exports = {
         {
             name: `pay`,
             description: `Pay a user`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `user`,
                 description: `The user you want to pay`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.User
             }, {
                 name: `amount`,
                 description: `The amount of artcoins you want to pay`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Integer,
                 min_value: 1,
@@ -40,6 +64,12 @@ module.exports = {
         }, {
             name: `how`,
             description: `How to pay a user`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand
         }],
     type: ApplicationCommandType.ChatInput,
@@ -72,7 +102,7 @@ module.exports = {
         //  Parse amount of tax to be deducted from the transaction
         const amountOfTax = amount * this.tax
         const total = Math.round(amount - amountOfTax)
-        return {senderAmount: amount, amountToSend:total}
+        return { senderAmount: amount, amountToSend: total }
     },
     async execute(client, reply, message, arg, locale) {
         if (!arg) return await reply.send(locale.PAY.SHORT_GUIDE, {
@@ -82,7 +112,7 @@ module.exports = {
         })
         const amountToCheck = arg.split(` `).splice(-1).join(``)
         // const amountToCheck = 5
-        return await this.run(client, reply, message, locale, {a:amountToCheck, u:arg})
+        return await this.run(client, reply, message, locale, { a: amountToCheck, u: arg })
 
     },
     async Iexecute(client, reply, interaction, options, locale) {
@@ -93,9 +123,9 @@ module.exports = {
         })
         const amountToSend = options.getInteger(`amount`)
         const targetUser = options.getUser(`user`)
-        return await this.run(client, reply, interaction, locale, {a:amountToSend, u:targetUser.username})
+        return await this.run(client, reply, interaction, locale, { a: amountToSend, u: targetUser.username })
     },
-    async run(client, reply, messageRef, locale, {a:amount, u:user}) {
+    async run(client, reply, messageRef, locale, { a: amount, u: user }) {
         const sender = await this.userCheck(client, messageRef, locale, null, `sender`)
         if (!sender) return await reply.send(locale.PAY.LVL_TOO_LOW, { socket: { level: this.requirementLevel } })
         const reciever = await this.userCheck(client, messageRef, locale, user, `reciever`)

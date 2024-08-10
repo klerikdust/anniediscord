@@ -12,6 +12,12 @@ const { ApplicationCommandType } = require(`discord.js`)
  */
 module.exports = {
     name: `stats`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`stats`, `botinfo`, `annieinfo`, `info`, `anniestatus`],
     description: `Gives info about the current Annie's Statistic.`,
     usage: `stats`,
@@ -22,12 +28,12 @@ module.exports = {
     messageCommand: true,
     type: ApplicationCommandType.ChatInput,
     async execute(client, reply, message, arg, locale) {
-        return await this.run(client,reply,message,locale)
+        return await this.run(client, reply, message, locale)
     },
     async Iexecute(client, reply, interaction, options, locale) {
-        return await this.run(client,reply,interaction,locale)
+        return await this.run(client, reply, interaction, locale)
     },
-    async run(client,reply,messageRef,locale) {
+    async run(client, reply, messageRef, locale) {
         const { total } = await client.db.systemUtils.getTotalCommandUsage()
         //  Cache server size for every 12 hour
         const serverSize = async () => {
@@ -36,7 +42,7 @@ module.exports = {
             // const onCache = await client.db.redis.get(key)
             if (onCache) return onCache
             const size = (await client.shard.fetchClientValues(`guilds.cache.size`)).reduce((acc, guildCount) => acc + guildCount, 0)
-            client.db.databaseUtils.setCache(key,size.toString(),{EX:(60 * 60) * 12})
+            client.db.databaseUtils.setCache(key, size.toString(), { EX: (60 * 60) * 12 })
             return size
         }
         return await reply.send(locale.SYSTEM_STATS.DISPLAY, {

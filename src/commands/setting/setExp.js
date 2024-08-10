@@ -11,12 +11,18 @@ const {
     ApplicationCommandOptionType,
     PermissionFlagsBits
 } = require(`discord.js`)
-    /**
-     * Enable or disable EXP Leveling System for this guild
-     * @author klerikdust
-     */
+/**
+ * Enable or disable EXP Leveling System for this guild
+ * @author klerikdust
+ */
 module.exports = {
     name: `setexp`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setexp`, `setexperience`, `setxp`],
     description: `Configure the exp for your member and the server.`,
     usage: `setexp`,
@@ -29,48 +35,108 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `disable`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `add`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `user`,
             description: `User to adjust.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.User
-        },{
+        }, {
             name: `amount`,
             description: `Amount to adjust by.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Integer
         }]
-    },{
+    }, {
         name: `minus`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `user`,
             description: `User to adjust.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.User
-        },{
+        }, {
             name: `amount`,
             description: `Amount to adjust by.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Integer
         }]
-    },{
+    }, {
         name: `reset`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `user`,
             description: `User to adjust.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.User
         }]
@@ -110,18 +176,18 @@ module.exports = {
             }
         })
         this.args = arg.split(` `)
-            //  Handle if the selected options doesn't exists
+        //  Handle if the selected options doesn't exists
         this.selectedAction = this.args[0].toLowerCase()
         if (!this.actions.includes(this.selectedAction)) return await reply.send(locale.SETEXP.INVALID_ACTION, {
-                socket: { actions: this.actions.join(`, `) }
-            })
-            //  Run action
+            socket: { actions: this.actions.join(`, `) }
+        })
+        //  Run action
         this.guildConfigurations = message.guild.configs
         this.primaryConfig = this.guildConfigurations.get(this.primaryConfigID)
         return this[this.selectedAction](client, reply, message, arg, locale, prefix)
     },
     async Iexecute(client, reply, interaction, options, locale) {
-        
+
         //  Handle if the selected options doesn't exists
         if (options.getSubcommand() == `enable`) {
             this.selectedAction = `enable`
@@ -130,16 +196,16 @@ module.exports = {
             this.selectedAction = `disable`
         }
         if (options.getSubcommand() == `add`) {
-            this.selectedAction = `add`            
+            this.selectedAction = `add`
             this.args = [`add`, options.getUser(`user`).id, options.getInteger(`amount`)]
         }
         if (options.getSubcommand() == `minus`) {
             this.selectedAction = `minus`
-            this.args = [`minus`,options.getUser(`user`).id, options.getInteger(`amount`)]
+            this.args = [`minus`, options.getUser(`user`).id, options.getInteger(`amount`)]
         }
         if (options.getSubcommand() == `reset`) {
             this.selectedAction = `reset`
-            this.args = [`reset`,options.getUser(`user`).id]
+            this.args = [`reset`, options.getUser(`user`).id]
         }
 
         //  Run action
@@ -153,13 +219,13 @@ module.exports = {
      */
     async enable(client, reply, message, arg, locale, prefix) {
         const fn = `[setExp.enable()]`
-            //  Handle if module already enabled before the action.
+        //  Handle if module already enabled before the action.
         if (this.primaryConfig.value) {
             //  Handle if module used the default value.
             if (!this.primaryConfig.setByUserId) return await reply.send(locale.SETEXP.ALREADY_ENABLED_BY_DEFAULT, {
                 socket: { emoji: await client.getEmoji(`692428843058724994`) }
             })
-            const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)            
+            const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)
             const localed = localizeTime == `now` ? moment().toISOString() : localizeTime
             return await reply.send(locale.SETEXP.ALREADY_ENABLED, {
                 socket: {
@@ -188,11 +254,11 @@ module.exports = {
      */
     async disable(client, reply, message, arg, locale, prefix) {
         const fn = `[setExp.disable()]`
-            //  Handle if module already disabled before the action.
+        //  Handle if module already disabled before the action.
         if (!this.primaryConfig.value) return await reply.send(locale.SETEXP.ALREADY_DISABLED, {
-                socket: { prefix: prefix }
-            })
-            //  Update configs
+            socket: { prefix: prefix }
+        })
+        //  Update configs
         client.db.guildUtils.updateGuildConfiguration({
             configCode: this.primaryConfigID,
             customizedParameter: 0,
@@ -229,7 +295,7 @@ module.exports = {
                 user: targetUser.master.username
             }
         })
-        let baseData = await userClass.requestMetadata(targetUser.master, 2,locale)
+        let baseData = await userClass.requestMetadata(targetUser.master, 2, locale)
         const combinedExp = baseData.exp.current_exp - amountToSubtract
         if (combinedExp <= 0) return await reply.send(locale.SETEXP.MINUS_OVERLIMIT, {
             socket: {
@@ -237,7 +303,7 @@ module.exports = {
                 emoji: await client.getEmoji(`692428748838010970`)
             }
         })
-        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel,locale)
+        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel, locale)
         let newData = expLib.xpFormula(combinedExp)
         baseData.exp = {
             current_exp: combinedExp,
@@ -296,9 +362,9 @@ module.exports = {
                 amount: commanifier(this.softLimit)
             }
         })
-        let baseData = await userClass.requestMetadata(targetUser.master, 2,locale)
+        let baseData = await userClass.requestMetadata(targetUser.master, 2, locale)
         const combinedExp = baseData.exp.current_exp + amountToAdd
-        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel,locale)
+        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel, locale)
         let newData = expLib.xpFormula(combinedExp)
         baseData.exp = {
             current_exp: combinedExp,
@@ -338,8 +404,8 @@ module.exports = {
         const userClass = new User(client, message)
         const targetUser = await userClass.lookFor(this.args.slice(1).join(` `))
         if (!targetUser) return await reply.send(locale.USER.IS_INVALID)
-        let baseData = await userClass.requestMetadata(targetUser.master, 2,locale)
-        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel,locale)
+        let baseData = await userClass.requestMetadata(targetUser.master, 2, locale)
+        const expLib = client.experienceLibs(message.guild.members.cache.get(targetUser.master.id), message.guild, message.channel, locale)
         let newData = expLib.xpFormula(0)
         baseData.exp = {
             current_exp: 0,

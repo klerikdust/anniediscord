@@ -14,6 +14,12 @@ const {
  */
 module.exports = {
     name: `sellfragments`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`sellfrag`, `sellfragments`, `sellfrags`, `sellfragment`],
     description: `Exchange all your unused fragments into artcoins!`,
     usage: `sellfragments <amount/all>`,
@@ -22,22 +28,40 @@ module.exports = {
     applicationCommand: true,
     messageCommand: true,
     options: [{
-            name: `all`,
-            description: `Sell all your fragments`,
-            type: ApplicationCommandOptionType.Subcommand,
+        name: `all`,
+        description: `Sell all your fragments`,
+        name_localizations: {
+            fr: ``
         },
-        {
-            name: `specific`,
+        description_localizations: {
+            fr: ``
+        },
+        type: ApplicationCommandOptionType.Subcommand,
+    },
+    {
+        name: `specific`,
+        description: `The amount of fragments you want to sell`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
+        type: ApplicationCommandOptionType.Subcommand,
+        options: [{
+            name: `amount`,
             description: `The amount of fragments you want to sell`,
-            type: ApplicationCommandOptionType.Subcommand,
-            options: [{
-                name: `amount`,
-                description: `The amount of fragments you want to sell`,
-                required: true,
-                type: ApplicationCommandOptionType.Integer,
-                min_value: 5,
-            }]
-        }
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
+            required: true,
+            type: ApplicationCommandOptionType.Integer,
+            min_value: 5,
+        }]
+    }
     ],
     type: ApplicationCommandType.ChatInput,
     server_specific: false,
@@ -58,7 +82,7 @@ module.exports = {
         })
         const amountToSell = arg.startsWith(`all`) ? `all` : trueInt(arg)
         return this.run(client, reply, message, locale, amountToSell)
-        
+
     },
     async Iexecute(client, reply, interaction, options, locale) {
         let arg = options.getInteger(`amount`)
@@ -76,8 +100,8 @@ module.exports = {
         })
         return this.run(client, reply, interaction, locale, arg)
     },
-    async run(client, reply, messageRef, locale, amount){
-        const userData = await (new User(client, messageRef)).requestMetadata(messageRef.member.user, 2,locale)
+    async run(client, reply, messageRef, locale, amount) {
+        const userData = await (new User(client, messageRef)).requestMetadata(messageRef.member.user, 2, locale)
         //  Handle if user doesn't have any fragments in their inventory
         if (!userData.inventory.fragments) return await reply.send(locale.SELLFRAGMENTS.EMPTY_FRAGMENTS, {
             socket: {
@@ -86,7 +110,7 @@ module.exports = {
         })
         //  Handle if user specified an invalid amount        
         const amountToSell = amount === `all` ? userData.inventory.fragments : amount
-        if (!amountToSell && amountToSell<=userData.inventory.fragments) return await reply.send(locale.SELLFRAGMENTS.INVALID_AMOUNT)
+        if (!amountToSell && amountToSell <= userData.inventory.fragments) return await reply.send(locale.SELLFRAGMENTS.INVALID_AMOUNT)
         //  Handle if user's specified amount is lower than the minimum sell 
         if (amountToSell < this.minimumToSell) return await reply.send(locale.SELLFRAGMENTS.AMOUNT_TOO_LOW, {
             socket: {

@@ -6,6 +6,12 @@ const { ApplicationCommandType } = require(`discord.js`)
  */
 module.exports = {
     name: `vote`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`vote`, `vt`, `vot`, `votes`, `upvote`],
     description: `Upvote Annie and get the reward!`,
     usage: `vote`,

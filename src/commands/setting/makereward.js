@@ -21,6 +21,12 @@ const {
  */
 module.exports = {
     name: `makereward`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`mr`],
     description: `make a custom reward package`,
     usage: `makereward`,
@@ -33,15 +39,33 @@ module.exports = {
     options: [{
         name: `create`,
         description: `make a new reward package`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `package_name`,
             description: `What to call the reward package`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String
         }, {
             name: `ac`,
             description: `how much ac to give as reward`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Integer,
             min_value: 0,
@@ -49,6 +73,12 @@ module.exports = {
         }, {
             name: `roles`,
             description: `how many roles do you want to give`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Integer,
             min_value: 0,
@@ -56,6 +86,12 @@ module.exports = {
         }, {
             name: `items`,
             description: `how many roles do you want to give`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Integer,
             min_value: 0,
@@ -64,10 +100,22 @@ module.exports = {
     }, {
         name: `delete`,
         description: `delete a package`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `package_name`,
             description: `the name of the package name`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.String,
             required: true,
             autocomplete: true
@@ -75,6 +123,12 @@ module.exports = {
     }, {
         name: `list`,
         description: `delete a package`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }],
     type: ApplicationCommandType.ChatInput,
@@ -122,8 +176,8 @@ module.exports = {
 
         // Create the cooldown for the command so a user cant start two instances of the command
         const sessionID = `REWARD_REGISTER:${interaction.member.id}@${interaction.guild.id}`
-        if (await client.db.databaseUtils.doesCacheExist(sessionID)) return await reply.send({content:`I'm sorry but you have a create package session still active please wait a few before trying again`,ephemeral:true})
-        client.db.databaseUtils.setCache(sessionID,`1`,{EX:60 * 3})
+        if (await client.db.databaseUtils.doesCacheExist(sessionID)) return await reply.send({ content: `I'm sorry but you have a create package session still active please wait a few before trying again`, ephemeral: true })
+        client.db.databaseUtils.setCache(sessionID, `1`, { EX: 60 * 3 })
 
         // Set up and send the message that will be updated as choices are made.
         let trackingMessage = await reply.send(Object.values(trackingMessageContent).join(`\n`), {
@@ -167,7 +221,7 @@ module.exports = {
                 // trackingMessageContent[`roles`] = `(0/0) roles selected, There are no roles available to add`
                 roles = []
                 updateTrackerMessage(`roles`, `(0/0) roles selected, There are no roles available to add`)
-                await await reply.send(`Sorry you dont have any roles for me to give try moving my role higher.`, {  ephemeral:true })
+                await await reply.send(`Sorry you dont have any roles for me to give try moving my role higher.`, { ephemeral: true })
                 phase++
                 // Test to see if we need to go to item select, if not go to the confirmation method
                 if (endPhase === phase) return phaseTwo()
@@ -194,7 +248,7 @@ module.exports = {
                         .setLabel(`Cancel`)
                         .setStyle(ButtonStyle.Danger)
                 )
-            const role_adding = await reply.send(`Time to add any roles if you wish.`, {  components: row })
+            const role_adding = await reply.send(`Time to add any roles if you wish.`, { components: row })
             const member = interaction.user.id
             const filter = interaction => [roleButtonCustomId, cancelButtonCustomId, finishedButtonCustomId].some(id => id === interaction.customId) && interaction.user.id === member
             // const filter = interaction => (interaction.customId === roleButtonCustomId || interaction.customId === cancelButtonCustomId || interaction.customId === finishedButtonCustomId) && interaction.user.id === member
@@ -384,7 +438,7 @@ module.exports = {
                 items = []
                 // trackingMessageContent[`items`] = `(0/0) items selected, There are no items available to add`
                 updateTrackerMessage(`items`, `(0/0) items selected, There are no items available to add`)
-                return await reply.send(`Sorry you dont have any items for me to give try adding one with /setshop add.`, {  ephemeral: true })
+                return await reply.send(`Sorry you dont have any items for me to give try adding one with /setshop add.`, { ephemeral: true })
             }
 
             // Create the buttons and collector for adding an item
@@ -407,7 +461,7 @@ module.exports = {
                         .setLabel(`Cancel`)
                         .setStyle(ButtonStyle.Danger)
                 )
-            const item_adding = await reply.send(`Time to add any items if you wish.`, {  components: row })
+            const item_adding = await reply.send(`Time to add any items if you wish.`, { components: row })
             const member = interaction.user.id
             const filter = interaction => [itemButtonCustomId, cancelButtonCustomId, finishedButtonCustomId].some(id => id === interaction.customId) && interaction.user.id === member
             // const filter = interaction => (interaction.customId === buttonCustomId || interaction.customId === `cancel` || interaction.customId === `finished`) && interaction.user.id === member
@@ -525,7 +579,7 @@ module.exports = {
                     const confirmationItem = await reply.send(`The item i found was: ${item.name}, is this correct`, {
                         components: [itemConfirmationRow]
                     })
-                    const itemfilter = iteminteraction => [`confirm`,`cancel`].some(id=>id===iteminteraction.customId) && iteminteraction.user.id === member
+                    const itemfilter = iteminteraction => [`confirm`, `cancel`].some(id => id === iteminteraction.customId) && iteminteraction.user.id === member
                     const itemListener = confirmationItem.createMessageComponentCollector({
                         itemfilter,
                         componentType: ComponentType.Button,
@@ -535,14 +589,14 @@ module.exports = {
                     itemListener.on(`collect`, async button => {
                         function itemsHitMax() {
                             // trackingMessageContent[`footer`] = `Please hit the button to confirm the transaction or cancel to stop the transaction`
-                            updateTrackerMessage(`footer`,`Please hit the button to confirm the transaction or cancel to stop the transaction`)
+                            updateTrackerMessage(`footer`, `Please hit the button to confirm the transaction or cancel to stop the transaction`)
                             item_adding.delete().catch(e => client.logger.warn(`Error has been handled\n${e}`))
                             itemListener.stop()
                             return buttonCollector.stop()
                         }
                         await button.deferUpdate()
                         await confirmationItem.delete().catch(e => client.logger.warn(`Error has been handled\n${e}`))
-                        
+
                         if (button.customId === `confirm`) {
                             if (items.length === itemAmount) return itemsHitMax() // Check before to avoid possibly duplicating record
                             let quantity = 1
@@ -561,14 +615,14 @@ module.exports = {
                             items.push([JSON.stringify(item), quantity])
                             itemNames.push(item.name)
                             // trackingMessageContent[`items`] = `(${items.length}/${itemAmount}) items selected ${formatSelectedItem(items)}`
-                            updateTrackerMessage(`items`,`(${items.length}/${itemAmount}) items selected ${formatSelectedItem(items)}`)
+                            updateTrackerMessage(`items`, `(${items.length}/${itemAmount}) items selected ${formatSelectedItem(items)}`)
                             if (items.length === itemAmount) return itemsHitMax() // Check again to end the phase 
                             // trackingMessageContent[`footer`] = `Please Hit the Item button to add another item`
-                            updateTrackerMessage(`footer`,`Please Hit the Item button to add another item`)
+                            updateTrackerMessage(`footer`, `Please Hit the Item button to add another item`)
                             itemListener.stop()
                         } else {
                             // trackingMessageContent[`footer`] = `Please Hit the Item button to try again`
-                            updateTrackerMessage(`footer`,`Please Hit the Item button to try again`)
+                            updateTrackerMessage(`footer`, `Please Hit the Item button to try again`)
                         }
                     })
 
@@ -607,7 +661,7 @@ module.exports = {
             await trackingMessage.edit({
                 components: [confirmationRow]
             })
-            const filter = i =>[`confirm`,`cancel`].some(id=>id===i.customId) && i.user.id === interaction.member.id
+            const filter = i => [`confirm`, `cancel`].some(id => id === i.customId) && i.user.id === interaction.member.id
             const confirmOrCancelListener = trackingMessage.createMessageComponentCollector({
                 filter,
                 componentType: ComponentType.Button,
@@ -637,12 +691,12 @@ module.exports = {
                     }
                     const pack = rewardSchema.pack(data) // The package is saved as a string that will be read when getting unpacked and turned back into an object.
                     // trackingMessageContent[`footer`] = `Your package has been added, you can view the packages with '/makereward list'`
-                    updateTrackerMessage(`footer`,`Your package has been added, you can view the packages with '/makereward list'`)
+                    updateTrackerMessage(`footer`, `Your package has been added, you can view the packages with '/makereward list'`)
                     client.db.customRewardUtils.recordReward(interaction.guild.id, interaction.user.id, pack, packageName)
                     confirmOrCancelListener.stop()
                 } else {
                     // trackingMessageContent[`footer`] = `The package has not been added, please run the command again if you wish to add a package.`
-                    updateTrackerMessage(`footer`,`The package has not been added, please run the command again if you wish to add a package.`)
+                    updateTrackerMessage(`footer`, `The package has not been added, please run the command again if you wish to add a package.`)
                     confirmOrCancelListener.stop()
                 }
 

@@ -11,6 +11,12 @@ const User = require(`../../libs/user`)
  */
 module.exports = {
     name: `hug`,
+    name_localizations: {
+        fr: `câlin`
+    },
+    description_localizations: {
+        fr: `Affiche un gif aléatoire d'un câlin.`
+    },
     aliases: [`hugs`, `hug`],
     description: `Displays a random gif of a hug.`,
     usage: `hug <User>(Optional)`,
@@ -22,6 +28,12 @@ module.exports = {
     options: [{
         name: `user`,
         description: `Any user you would like to hug?`,
+        name_localizations: {
+            fr: `utilisateur`
+        },
+        description_localizations: {
+            fr: `Un utilisateur que vous aimeriez serrer dans vos bras ?`
+        },
         required: false,
         type: ApplicationCommandOptionType.User
     }],

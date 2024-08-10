@@ -22,6 +22,12 @@ const {
  */
 module.exports = {
     name: `setwelcomer`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setwelcomer`, `setwelcome`, `setwlcm`],
     description: `Manage welcomer module for your guild.`,
     usage: `setWelcomer`,
@@ -34,22 +40,52 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Enable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `disable`,
         description: `Disable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `preview`,
         description: `Preview this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `channel`,
         description: `Set a specific channel for Annie's logs.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `The channel to set for Annie's logs.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
@@ -57,87 +93,195 @@ module.exports = {
     }, {
         name: `text`,
         description: `Set text for welcomer module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `The text to set for the welcome message.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String
         }]
     }, {
         name: `role`,
         description: `The role to set for the welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `The role to set for the welcome message.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Role
         }]
     }, {
         name: `reset_role`,
         description: `Reset the welcome role.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `image`,
         description: `Set an image for the welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.SubcommandGroup,
         options: [{
             name: `attachment`,
             description: `Set an image from an attachment.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `set`,
                 description: `The image to set for the welcome message.`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Attachment
             }]
         }, {
             name: `url`,
             description: `Set an image from a url.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `set`,
                 description: `The image to set for the welcome message.`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.String
             }]
         }, {
             name: `reset`,
             description: `Resets the welcomer image back to default.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand
         }]
     }, {
         name: `userimage`,
         description: `Allow user set image for welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `multiple`,
         description: `Send a welcome message to a specfic channel based on roles/channels`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.SubcommandGroup,
         options: [{
             name: `add`,
             description: `Add a channel to recieve welcome messages`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `channel`,
                 description: `Channel name`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Channel,
                 channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
             }, {
                 name: `text`,
                 description: `Set text for welcome message in this channel.`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 type: ApplicationCommandOptionType.String,
                 required: true,
             }]
         }, {
             name: `remove`,
             description: `Remove a channel to recieve welcome messages`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `channel`,
                 description: `Channel name`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Channel,
                 channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
@@ -145,29 +289,65 @@ module.exports = {
         }, {
             name: `list`,
             description: `view all channels that can recieve welcome messages`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
         }]
     }, {
         name: `onboardwait`,
         description: `Wait for user to finish onboarding before sending welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `wait`,
             description: `toggle to wait or not`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Boolean,
         }]
     }, {
         name: `noimage`,
         description: `Allow user set image for welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `theme`,
         description: `Set a theme for the welcome message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `The theme to set for the welcome message.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String,
             choices: [{ name: `light`, value: `light` }, { name: `dark`, value: `dark` }]

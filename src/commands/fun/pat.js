@@ -8,6 +8,12 @@ const User = require(`../../libs/user`)
  */
 module.exports = {
     name: `pat`,
+    name_localizations: {
+        fr: `tapoter`
+    },
+    description_localizations: {
+        fr: `Affiche un gif aléatoire d'une tape.`
+    },
     aliases: [],
     description: `Displays a random gif of a pat.`,
     usage: `pat <User>(Optional)`,
@@ -19,6 +25,12 @@ module.exports = {
     options: [{
         name: `user`,
         description: `Any user you would like to give a pat?`,
+        name_localizations: {
+            fr: `utilisateur`
+        },
+        description_localizations: {
+            fr: `Un utilisateur à qui vous souhaiteriez donner une tape ?`
+        },
         required: false,
         type: ApplicationCommandOptionType.User
     }],

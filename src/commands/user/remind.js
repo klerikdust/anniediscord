@@ -7,6 +7,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `remind`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`remind`, `rmd`, `reminds`, `reminder`, `remindme`],
     description: `Never forget things. Ask Annie to reminds you anytime!`,
     usage: `remind <message> <time>`,
@@ -18,18 +24,36 @@ module.exports = {
     options: [{
         name: `message`,
         description: `The message to be reminded`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.String
     },
     {
         name: `in_how_long`,
         description: `when to remind`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.Integer
     },
     {
         name: `time_unit`,
         description: `the time unit to be used`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         choices: [
             { name: `seconds`, value: `seconds` },
@@ -64,7 +88,7 @@ module.exports = {
         const context = client.reminders.getContext(reminderMessage, reminderTimeAmount, reminderTimeUnit, interaction.member.id)
         return await this.run(client, reply, locale, context)
     },
-    async run(client, reply, locale, context){
+    async run(client, reply, locale, context) {
         if (!context.isValidReminder) return await reply.send(locale.REMINDER.INVALID_DATE, {
             socket: {
                 emoji: await client.getEmoji(`790338393015713812`),

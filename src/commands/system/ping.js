@@ -1,14 +1,29 @@
 "use strict"
 const commanifier = require(`../../utils/commanifier`)
-const { ApplicationCommandType } = require(`discord.js`)
+const { ApplicationCommandType,SlashCommandBuilder } = require(`discord.js`)
+const data = new SlashCommandBuilder()
+.setName(`ping`)
+.setNameLocalizations({
+    fr: `pinger`
+})
+.setDescription(`Output bot's latency`)
+.setDescriptionLocalizations({
+    fr: `Latence du bot de sortie`
+})
     /**
      * Output bot's latency
      * @author klerikdust
      */
 module.exports = {
     name: `ping`,
+    name_localizations:{
+		fr: `pinger`
+	},
     aliases: [`pong`, `p1ng`, `poing`],
     description: `Output bot's latency`,
+    description_localizations:{
+		fr: `Latence du bot de sortie`
+    },
     usage: `ping`,
     permissionLevel: 0,
     server_specific: false,

@@ -6,6 +6,8 @@
  */
 module.exports = {
     name: `dbkits`,
+    name_localizations:{},
+    description_localizations:{},
     aliases: [`db`],
     description: `Running database queries on air`,
     usage: `db <[SqlStatement]> --flag`,

@@ -8,6 +8,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType, InteractionType, P
 module.exports = {
     name: `shoplog`,
     aliases: [],
+    name_localizations: {
+        fr: `journal de la boutique`
+    },
+    description_localizations: {
+        fr: `Affichage du classement de votre serveur pour l'élément sélectionné !`
+    },
     description: `Displaying your server leaderboard for selected item!`,
     usage: `shopLog enable`,
     permissionLevel: 2,
@@ -19,18 +25,42 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Enable this module.`,
+        name_localizations: {
+            fr: `activer`
+        },
+        description_localizations: {
+            fr: `Activez ce module.`
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `disable`,
         description: `Disable this module.`,
+        name_localizations: {
+            fr: `désactiver`
+        },
+        description_localizations: {
+            fr: `Désactivez ce module.`
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `channel`,
         description: `Set a specific channel for Annie's shop logs.`,
+        name_localizations: {
+            fr: `canal`
+        },
+        description_localizations: {
+            fr: `Set a specific channel for Annie's shop logs.`
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set a specific channel for Annie's shop logs.`,
+            name_localizations: {
+                fr: `ensemble`
+            },
+            description_localizations: {
+                fr: `Set a specific channel for Annie's shop logs.`
+            },
             required: true,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]

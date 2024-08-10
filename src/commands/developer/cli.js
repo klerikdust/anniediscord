@@ -1,11 +1,11 @@
 "use strict"
- 
- 
+
+
 const cmd = require(`node-cmd`)
-    /**
-     * 	Running terminal command
-     * 	@author klerikdust
-     */
+/**
+ * 	Running terminal command
+ * 	@author klerikdust
+ */
 module.exports = {
     name: `cli`,
     aliases: [`cmd`, `cli`],
@@ -20,18 +20,18 @@ module.exports = {
     async execute(client, reply, message, arg, locale) {
         //	Return if user doesn't specify arguments.
         if (!arg) return reply.send(locale.CLI.GUIDE)
-            //	Parse statement
+        //	Parse statement
         const stmt = arg.match(/\[(.*?)\]/)[1]
-            //	Make sure the the stmt is valid
+        //	Make sure the the stmt is valid
         if (!stmt) return reply.send(locale.CLI.MISSING_STMT)
         reply.send(locale.COMMAND.FETCHING, {
-                simplified: true,
-                socket: {
-                    emoji: await client.getEmoji(`790994076257353779`),
-                    command: `cli`,
-                    user: message.author.id
-                }
-            })
+            simplified: true,
+            socket: {
+                emoji: await client.getEmoji(`790994076257353779`),
+                command: `cli`,
+                user: message.author.id
+            }
+        })
             .then(load => {
                 const initTime = process.hrtime()
                 return cmd.get(stmt, (err, data) => {

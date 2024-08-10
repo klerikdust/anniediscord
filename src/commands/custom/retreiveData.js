@@ -11,6 +11,12 @@ module.exports = {
      * @type {string}
      */
     name: `retrievedata`,
+    name_localizations: {
+        fr: `récupérer des données
+`},
+    description_localizations: {
+        fr: `Créez un fichier csv.`
+    },
     /**
      * Define accepted aliases. User will be able to call the command with these alternative names.
      * @required
@@ -77,7 +83,7 @@ module.exports = {
      * @required ONLY if "server_specific" is set to true.
      * @type {Array}
      */
-    servers: [`577121315480272908`,`882552960771555359`],
+    servers: [`577121315480272908`, `882552960771555359`],
     /**
      * Any other properties you want to add to the command.
      */
@@ -114,11 +120,11 @@ module.exports = {
         await client.db.databaseUtils.exportData({ itemId: itemId, guildId: messageRef.guild.id, filepath: filepath })
 
         return await messageRef.channel.send({
-            files:[{
+            files: [{
                 attachment: filepath,
                 name: filename
             }],
-            content:`Here is the data from the database`
+            content: `Here is the data from the database`
         })
     }
 }

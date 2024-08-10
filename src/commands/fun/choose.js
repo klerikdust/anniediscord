@@ -7,6 +7,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `choose`,
+    name_localizations: {
+        fr: `choisir`
+    },
+    description_localizations: {
+        fr: `Je vais essayer de choisir toutes les options que vous proposez !`
+    },
     aliases: [`choose`, `pick`],
     description: `I'll try to pick any options you give!`,
     usage: `choose <options>`,
@@ -18,6 +24,12 @@ module.exports = {
     options: [{
         name: `choices`,
         description: `Please give me some options to pick from, seperated by , or "or".`,
+        name_localizations: {
+            fr: `choix`
+        },
+        description_localizations: {
+            fr: `Veuillez me donner quelques options parmi lesquelles choisir, séparées par "," ou "or".`
+        },
         required: true,
         type: ApplicationCommandOptionType.String
     }],

@@ -9,13 +9,19 @@ const {
     ApplicationCommandOptionType,
     PermissionFlagsBits
 } = require(`discord.js`)
-    /**
-     * Customize role-rank system in the guild.
-     * @author Andrew
-     * @revised by klerikdust
-     */
+/**
+ * Customize role-rank system in the guild.
+ * @author Andrew
+ * @revised by klerikdust
+ */
 module.exports = {
     name: `setrank`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setranks`, `setrank`, `setRanks`, `setrnk`],
     description: `Customize role-rank system in the guild`,
     usage: `setranks`,
@@ -28,45 +34,105 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Enable the role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `disable`,
         description: `Disable the role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `reset`,
         description: `Reset the role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `stack`,
         description: `Stack the roles for role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `info`,
         description: `Show the current role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
-    },{
+    }, {
         name: `delete`,
         description: `Delete a role from the role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `role`,
             description: `The role to delete`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Role,
             required: true,
         }]
-    },{
+    }, {
         name: `add`,
         description: `Add a role from the role-rank system`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `role`,
             description: `The role to add`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Role,
             required: true,
-        },{
+        }, {
             name: `level`,
             description: `The level of the role`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Integer,
             required: true,
         }]
@@ -98,14 +164,14 @@ module.exports = {
             }
         })
         this.args = arg.split(` `)
-            //  Handle if selected action doesn't exists
+        //  Handle if selected action doesn't exists
         if (!this.actions.includes(this.args[0])) return await reply.send(locale.SETRANK.INVALID_ACTION)
-            //  Otherwise, run the action.
+        //  Otherwise, run the action.
         this.guildConfigurations = message.guild.configs
         this.action = this.args[0]
-            //  This is the main configuration of setwelcomer, so everything dependant on this value
+        //  This is the main configuration of setwelcomer, so everything dependant on this value
         this.primaryConfig = this.guildConfigurations.get(this.primaryConfigID)
-            //  This is the sub-part of main configuration such as welcomer's channel, text, etc
+        //  This is the sub-part of main configuration such as welcomer's channel, text, etc
         this.subConfig = this.guildConfigurations.get(this.subConfigID)
         this.annieRole = (await message.guild.members.fetch(client.user.id)).roles.highest
         return this[this.args[0]](client, reply, message, arg, locale, prefix)
@@ -120,24 +186,24 @@ module.exports = {
         if (options.getSubcommand() === `reset`) {
             this.args = [`reset`]
         }
-        if (options.getSubcommand() === `stack`){
+        if (options.getSubcommand() === `stack`) {
             this.args = [`stack`]
         }
-        if (options.getSubcommand() === `info`){
+        if (options.getSubcommand() === `info`) {
             this.args = [`info`]
         }
-        if (options.getSubcommand() === `delete`){
+        if (options.getSubcommand() === `delete`) {
             this.args = [`delete`, options.getRole(`role`).id]
         }
-        if (options.getSubcommand() === `add`){
+        if (options.getSubcommand() === `add`) {
             this.args = [`add`, options.getRole(`role`).id, options.getInteger(`level`)]
         }
         //  Otherwise, run the action.
         this.guildConfigurations = interaction.guild.configs
         this.action = this.args[0]
-            //  This is the main configuration of setwelcomer, so everything dependant on this value
+        //  This is the main configuration of setwelcomer, so everything dependant on this value
         this.primaryConfig = this.guildConfigurations.get(this.primaryConfigID)
-            //  This is the sub-part of main configuration such as welcomer's channel, text, etc
+        //  This is the sub-part of main configuration such as welcomer's channel, text, etc
         this.subConfig = this.guildConfigurations.get(this.subConfigID)
         this.annieRole = (await interaction.guild.members.fetch(client.user.id)).roles.highest
         return this[this.args[0]](client, reply, interaction, null, locale, `/`)
@@ -148,9 +214,9 @@ module.exports = {
      */
     async enable(client, reply, message, arg, locale, prefix) {
         if (!this.primaryConfig.value && !this.primaryConfig.setByUserId) this.firstTimer = true
-            //  Handle if custom ranks already enabled before the action.
+        //  Handle if custom ranks already enabled before the action.
         if (this.primaryConfig.value) {
-            const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)            
+            const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)
             const localed = localizeTime == `now` ? moment().toISOString() : localizeTime
             return await reply.send(locale.SETRANK.ALREADY_ENABLED, {
                 socket: {
@@ -168,7 +234,7 @@ module.exports = {
             cacheTo: this.guildConfigurations
         })
         await reply.send(locale.SETRANK.SUCCESSFULLY_ENABLED, { status: `success` })
-            //  Spawn tip if user is a first timer
+        //  Spawn tip if user is a first timer
         if (this.firstTimer) return await reply.send(locale.SETRANK.FIRST_TIMER_TIP, {
             simplified: true,
             socket: { prefix: prefix }
@@ -181,23 +247,23 @@ module.exports = {
      */
     async add(client, reply, message, arg, locale, prefix) {
         if (!this.args[1]) return await reply.send(locale.SETRANK.ADD_MISSING_TARGET_ROLE, {
-                socket: { prefix: prefix }
-            })
-            //  Handle if target role doesn't exists
+            socket: { prefix: prefix }
+        })
+        //  Handle if target role doesn't exists
         const getRole = findRole(this.args[1], message.guild)
         if (!getRole) return await reply.send(locale.SETRANK.INVALID_ROLE, { socket: { emoji: await client.getEmoji(`692428578683617331`) } })
-            //  Handle if target role is too high
+        //  Handle if target role is too high
         if (getRole.position > this.annieRole.position) return await reply.send(locale.SETRANK.ROLE_TOO_HIGH, {
-                socket: {
-                    role: getRole,
-                    annieRole: this.annieRole.name,
-                    emoji: await client.getEmoji(`692428578683617331`)
-                }
-            })
-            //  Handle if the role is already registered
+            socket: {
+                role: getRole,
+                annieRole: this.annieRole.name,
+                emoji: await client.getEmoji(`692428578683617331`)
+            }
+        })
+        //  Handle if the role is already registered
         const getRegisteredRank = this.subConfig.value.filter(node => node.ROLE === getRole.id)
         if (getRegisteredRank.length >= 1) {
-            const localizeTime = await client.db.systemUtils.toLocaltime(this.subConfig.updatedAt)            
+            const localizeTime = await client.db.systemUtils.toLocaltime(this.subConfig.updatedAt)
             const localed = localizeTime == `now` ? moment().toISOString() : localizeTime
             return await reply.send(locale.SETRANK.ADD_ROLE_ALREADY_REGISTERED, {
                 header: locale.SETRANK.ADD_ROLE_ALREADY_REGISTERED_HEADER,
@@ -212,15 +278,15 @@ module.exports = {
         }
         //  Handle if user doesn't specify the target required level
         if (!this.args[2]) return await reply.send(locale.SETRANK.ADD_MISSING_REQUIRED_LEVEL, {
-                socket: {
-                    prefix: prefix,
-                    role: getRole.name.toLowerCase()
-                },
-            })
-            //  Handle if the specified required level is a faulty value/non-parseable number
+            socket: {
+                prefix: prefix,
+                role: getRole.name.toLowerCase()
+            },
+        })
+        //  Handle if the specified required level is a faulty value/non-parseable number
         const getRequiredLevel = trueInt(this.args[2])
         if (!getRequiredLevel) return await reply.send(locale.SETRANK.ADD_INVALID_REQUIRED_LEVEL)
-            //  Update configs
+        //  Update configs
         this.subConfig.value.push({
             "ROLE": getRole.id,
             "LEVEL": getRequiredLevel
@@ -248,13 +314,13 @@ module.exports = {
      */
     async delete(client, reply, message, arg, locale) {
         if (!this.args[1]) return await reply.send(locale.SETRANK.DELETE_MISSING_TARGET_ROLE, { socket: { emoji: await client.getEmoji(`790338393015713812`) } })
-            //  Handle if target role doesn't exists
+        //  Handle if target role doesn't exists
         const getRole = findRole(this.args[1], message.guild)
         if (!getRole) return await reply.send(locale.SETRANK.INVALID_ROLE, { socket: { emoji: await client.getEmoji(`692428578683617331`) } })
-            //  Handle if the role hasn't been registered in the first place
+        //  Handle if the role hasn't been registered in the first place
         const getRegisteredRank = this.subConfig.value.filter(node => node.ROLE === getRole.id)
         if (getRegisteredRank.length <= 0) return await reply.send(locale.SETRANK.DELETE_UNREGISTERED_ROLE, { socket: { emoji: await client.getEmoji(`692428748838010970`) } })
-            //  Delete rank from the guild's configurations entry
+        //  Delete rank from the guild's configurations entry
         this.subConfig.value = this.subConfig.value.filter(node => node.ROLE !== getRole.id)
         client.db.guildUtils.updateGuildConfiguration({
             configCode: this.subConfigID,
@@ -288,7 +354,7 @@ module.exports = {
             })
         }
         //  Handle if the main module is disabled for the few times
-        const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)            
+        const localizeTime = await client.db.systemUtils.toLocaltime(this.primaryConfig.updatedAt)
         const localed = localizeTime == `now` ? moment().toISOString() : localizeTime
         if (!this.primaryConfig.value && this.primaryConfig.setByUserId) {
             return await reply.send(locale.SETRANK.INFO_DISABLED_BY_USER, {
@@ -318,7 +384,7 @@ module.exports = {
         //  Otherwise, display info like usual
         const localizeSubConfigTime = await client.db.systemUtils.toLocaltime(this.subConfig.updatedAt)
         const localedSub = localizeSubConfigTime == `now` ? moment().toISOString() : localizeSubConfigTime
-        
+
         return await reply.send(locale.SETRANK.INFO_ENABLED, {
             status: `success`,
             thumbnail: message.guild.iconURL(),
@@ -356,9 +422,9 @@ module.exports = {
      */
     async reset(client, reply, message, arg, locale) {
         let timestamp = await client.db.guildUtils.getCurrentTimestamp()
-            //  Handle if guild doesn't have any registered rank.
+        //  Handle if guild doesn't have any registered rank.
         if (this.subConfig.value.length <= 0) return await reply.send(locale.SETRANK.RESET_NULL_RANKS)
-            //  Confirmation before performing the action
+        //  Confirmation before performing the action
         const confirmation = await reply.send(``, { header: locale.SETRANK.RESET_CONFIRMATION })
         const c = new Confirmator(message, reply, locale)
         await c.setup(message.member.id, confirmation)
@@ -382,7 +448,7 @@ module.exports = {
     async disable(client, reply, message, arg, locale, prefix) {
         //  Handle if the guild already has disabled the configuration
         if (!this.primaryConfig.value) return await reply.send(locale.SETRANK.ALREADY_DISABLED, { socket: { prefix: prefix } })
-            //  Otherwise, update the configuration. Both in the cache and database.
+        //  Otherwise, update the configuration. Both in the cache and database.
         client.db.guildUtils.updateGuildConfiguration({
             configCode: this.primaryConfigID,
             customizedParameter: 0,

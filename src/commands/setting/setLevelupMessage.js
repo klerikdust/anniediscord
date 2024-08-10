@@ -15,6 +15,12 @@ const {
  */
 module.exports = {
     name: `setlevelupmessage`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setlevelupmsg`, `setlvlupmsg`, `setlvlupmessage`, `setlevelupmessage`],
     description: `Enable or disable level-up message module for this guild`,
     usage: `setlvlupmsg <Enable/Disable>`,
@@ -27,19 +33,43 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Enable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `disable`,
         description: `Disable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `channel`,
         description: `Set a specific channel for level-up message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [
             {
                 name: `set`,
                 description: `Set a specific channel for level-up message.`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Channel,
                 channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
@@ -47,19 +77,43 @@ module.exports = {
     }, {
         name: `channel_reset`,
         description: `Reset the channel for level-up message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `text`,
         description: `Set a specific text for level-up message.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set a specific text for level-up message.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true, type: ApplicationCommandOptionType.String
         }]
     }, {
         name: `help`,
         description: `Show help dialoge for this command.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }],
     type: ApplicationCommandType.ChatInput,

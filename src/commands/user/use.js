@@ -13,6 +13,12 @@ const {
  */
 module.exports = {
     name: `use`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`use`, `uses`, `eat`, `drink`, `open`, `consume`],
     description: `Consume an item and gain certain effect`,
     usage: `use <item>`,
@@ -24,6 +30,12 @@ module.exports = {
     options: [{
         name: `item`,
         description: `The item you want to use`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.String,
     }],

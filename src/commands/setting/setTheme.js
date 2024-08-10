@@ -4,12 +4,18 @@ const {
     ApplicationCommandType,
     ApplicationCommandOptionType
 } = require(`discord.js`)
-    /**
-     * Switch your profile theme to Light or Dark.
-     * @author Andrew
-     */
+/**
+ * Switch your profile theme to Light or Dark.
+ * @author Andrew
+ */
 module.exports = {
     name: `settheme`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`theme`, `themeswitch`, `switchtheme`, `settheme`],
     description: `Switch your profile theme to Light or Dark.`,
     usage: `theme <Light/Dark>`,
@@ -21,30 +27,36 @@ module.exports = {
     options: [{
         name: `theme`,
         description: `choose your theme`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.String,
         required: true,
-        choices: [{name: `light`, value: `light`}, {name: `dark`, value: `dark`}]
+        choices: [{ name: `light`, value: `light` }, { name: `dark`, value: `dark` }]
     }],
     type: ApplicationCommandType.ChatInput,
     async execute(client, reply, message, arg, locale, prefix) {
         const darkThemeStrings = [`dark`, `black`, `darktheme`, `dark_profileskin`, `nightmode`, `night`]
         const lightThemeStrings = [`light`, `white`, `lighttheme`, `light_profileskin`, `lightmode`, `day`]
-        const userData = await (new User(client, message)).requestMetadata(message.author, 2,locale)
-            //  Returns if user didn't specify any keyword
+        const userData = await (new User(client, message)).requestMetadata(message.author, 2, locale)
+        //  Returns if user didn't specify any keyword
         if (!arg) return await reply.send(locale.SWITCH_THEME.MISSING_KEYWORD, {
-                image: `banner_settheme`,
-                socket: { prefix: prefix }
-            })
-            /**
-             * Returns a boolean for if the user has the choosen theme and gives theme to user if they dont have it
-             * @param {string} theme 
-             * @returns {boolean} boolean
-             */
+            image: `banner_settheme`,
+            socket: { prefix: prefix }
+        })
+        /**
+         * Returns a boolean for if the user has the choosen theme and gives theme to user if they dont have it
+         * @param {string} theme 
+         * @returns {boolean} boolean
+         */
         const userHasTheme = async theme => {
             let res = await client.db.userUtils.checkIfThemeOwned(theme, message.author.id, message.guild.id)
             let resAnswer = Object.values(res)[0] == 1 ? true : false
             if (resAnswer) return true
-                // Give item to user
+            // Give item to user
             await client.db.userUtils.GiveThemeToUser(theme, message.author.id, message.guild.id)
             return true
         }
@@ -76,7 +88,7 @@ module.exports = {
             let res = await client.db.userUtils.checkIfThemeOwned(theme, interaction.member.id, interaction.member.id)
             let resAnswer = Object.values(res)[0] == 1 ? true : false
             if (resAnswer) return true
-                // Give item to user
+            // Give item to user
             await client.db.userUtils.GiveThemeToUser(theme, interaction.member.id, interaction.guild.id)
             return true
         }
@@ -88,6 +100,6 @@ module.exports = {
         if (theme == `light`) hasTheme = await userHasTheme(`light`)
         if (!hasTheme) return await reply.send(locale.SWITCH_THEME.NO_THEME_OWNED)
         client.db.userUtils.setTheme(theme, interaction.member.id, interaction.guild.id)
-        return await reply.send(theme == `light`? locale.SWITCH_THEME.SET_LIGHTMODE : locale.SWITCH_THEME.SET_NIGHTMODE, { status: `success` })
+        return await reply.send(theme == `light` ? locale.SWITCH_THEME.SET_LIGHTMODE : locale.SWITCH_THEME.SET_NIGHTMODE, { status: `success` })
     },
 }

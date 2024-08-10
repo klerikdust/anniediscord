@@ -13,6 +13,12 @@ const {
  */
 module.exports = {
     name: `setcommand`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setcommand`, `setcommands`, `setcmd`],
     description: `Set a specific channel for Annie's command usage.`,
     usage: `setcommand <channel/info/reset>`,
@@ -25,40 +31,82 @@ module.exports = {
     options: [{
         name: `channel`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
         }, {
             name: `additional_channel_1`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
         }, {
             name: `additional_channel_2`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
         }, {
             name: `additional_channel_3`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
         }, {
             name: `additional_channel_4`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
         }, {
             name: `additional_channel_5`,
             description: `Set a specific channel for Annie's command usage.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]
@@ -66,6 +114,12 @@ module.exports = {
     }, {
         name: `reset`,
         description: `Action to perform.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }],
     type: ApplicationCommandType.ChatInput,

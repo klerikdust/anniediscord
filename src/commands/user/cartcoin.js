@@ -10,6 +10,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `cartcoin`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`convertac`, `acconvert`, `cartcoin`, `cartcoins`, `artcoinconvert`, `convertartcoin`],
     description: `Converts Artcoins into EXP at the rate of 1:8`,
     usage: `cartcoin <Amount>`,
@@ -22,15 +28,33 @@ module.exports = {
         {
             name: `all`,
             description: `Convert all of your Artcoins`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
         },
         {
             name: `amount`,
             description: `choose the amount of Artcoins you want to convert`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `how_many`,
                 description: `How many Artcoins you wish to convert`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 requied: true,
                 type: ApplicationCommandOptionType.Integer,
                 min_value: 8
@@ -58,7 +82,7 @@ module.exports = {
     async run(client, reply, messageRef, arg, locale,) {
         const cacheId = `CARTCOIN:${messageRef.member.id}@${messageRef.guildId}`
         if (await client.db.databaseUtils.doesCacheExist(cacheId)) {
-            return await reply.send(locale.CARTCOIN.ALREADY_IN_PROGRESS,{ephemeral:true})
+            return await reply.send(locale.CARTCOIN.ALREADY_IN_PROGRESS, { ephemeral: true })
         }
         client.db.databaseUtils.setCache(cacheId, `1`, { EX: 60 * 30 })
         const userBalance = await client.db.userUtils.getUserBalance(messageRef.member.id, messageRef.guildId)

@@ -13,6 +13,12 @@ const {
  */
 module.exports = {
     name: `setlogs`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setlogs`, `setlog`, `setlogging`],
     description: `Customize Logging-System for your guild`,
     usage: `setlog`,
@@ -25,18 +31,42 @@ module.exports = {
     options: [{
         name: `enable`,
         description: `Enable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `disable`,
         description: `Disable this module.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand
     }, {
         name: `channel`,
         description: `Set a specific channel for Annie's logs.`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set a specific channel for Annie's logs.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Channel,
             channel_types: [ChannelType.GuildText, ChannelType.PublicThread, ChannelType.PrivateThread]

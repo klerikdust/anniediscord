@@ -23,6 +23,12 @@ const {
  */
 module.exports = {
     name: `setshop`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`setshop`, `setshops`],
     description: `Create, restock & sell items for your server members!`,
     usage: `setShop`,
@@ -35,89 +41,197 @@ module.exports = {
     options: [{
         name: `open`,
         description: `Open the shop`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `close`,
         description: `Close the shop`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
     }, {
         name: `text`,
         description: `Set the shop's text`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `set`,
             description: `Set the shop's text`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String
         }]
     }, {
         name: `image`,
         description: `Set the shop's image`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.SubcommandGroup,
         options: [{
             name: `attachment`,
             description: `Set the shop's image`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `set`,
                 description: `Set the shop's image`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.Attachment
             }]
         }, {
             name: `url`,
             description: `Set the shop's image`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand,
             options: [{
                 name: `set`,
                 description: `Set the shop's image`,
+                name_localizations: {
+                    fr: ``
+                },
+                description_localizations: {
+                    fr: ``
+                },
                 required: true,
                 type: ApplicationCommandOptionType.String
             }]
         }, {
             name: `reset`,
             description: `Set the shop's image`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             type: ApplicationCommandOptionType.Subcommand
         }]
     }, {
         name: `delete`,
         description: `Delete an item`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `item`,
             description: `Delete an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String
         }]
     }, {
         name: `add`,
         description: `Add an item`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `item_name`,
             description: `Add an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String,
             max_length: 20
         }, {
             name: `item_price`,
             description: `Add an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Integer
         }, {
             name: `item_description`,
             description: `Add an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String,
             max_length: 120
         }, {
             name: `tradeable`,
             description: `Add an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.Boolean
         }, {
             name: `item_use_message`,
             description: `{{user}} to mention a user & {{item}} to mention the item or type ~ to specify any custom message.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: false,
             type: ApplicationCommandOptionType.String,
             max_length: 120
@@ -125,10 +239,22 @@ module.exports = {
     }, {
         name: `edit`,
         description: `Edit an item`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         type: ApplicationCommandOptionType.Subcommand,
         options: [{
             name: `item`,
             description: `Edit an item`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
             required: true,
             type: ApplicationCommandOptionType.String,
             max_length: 20

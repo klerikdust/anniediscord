@@ -2,12 +2,18 @@
 const GUI = require(`../../ui/prebuild/profile`)
 const User = require(`../../libs/user`)
 const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discord.js`)
-    /**
-     * Displaying user's profile card!
-     * @author klerikdust
-     */
+/**
+ * Displaying user's profile card!
+ * @author klerikdust
+ */
 module.exports = {
     name: `profile`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`profile`, `p`, `prof`],
     description: `Displaying user's profile card!`,
     usage: `profile <User>(Optional)`,
@@ -19,6 +25,12 @@ module.exports = {
     options: [{
         name: `user`,
         description: `Display the profile of the specified user`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: false,
         type: ApplicationCommandOptionType.User
     }],
@@ -27,18 +39,18 @@ module.exports = {
         const userLib = new User(client, message)
         let targetUser = arg ? await userLib.lookFor(arg) : message.author
         if (!targetUser) return await reply.send(locale.USER.IS_INVALID)
-            //  Normalize structure
+        //  Normalize structure
         targetUser = targetUser.master || targetUser
-        const userData = await userLib.requestMetadata(targetUser, 2,locale)
-        return await this.run(client,reply,locale,userData)
+        const userData = await userLib.requestMetadata(targetUser, 2, locale)
+        return await this.run(client, reply, locale, userData)
     },
     async Iexecute(client, reply, interaction, options, locale) {
         const userLib = new User(client, interaction)
         let targetUser = options.getUser(`user`) || interaction.member.user
-        const userData = await userLib.requestMetadata(targetUser, 2,locale)
-        return await this.run(client,reply,locale,userData)
+        const userData = await userLib.requestMetadata(targetUser, 2, locale)
+        return await this.run(client, reply, locale, userData)
     },
-    async run(client,reply,locale, user){
+    async run(client, reply, locale, user) {
         const fetching = await reply.send(locale.PROFILECARD.FETCHING, {
             socket: { emoji: await client.getEmoji(`790994076257353779`) }
         })

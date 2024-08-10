@@ -7,6 +7,8 @@
  */
 module.exports = {
     name: `eval`,
+    name_localizations:{},
+    description_localizations:{},
     aliases: [`ev`, `evl`, `exec`],
     description: `Evaluate line of code on air`,
     usage: `eval <LineOfCode>`,

@@ -7,6 +7,12 @@ const customReward = require(`../../libs/customRewards`)
  */
 module.exports = {
     name: `sendreward`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [],
     description: `Send a package made from 'makereward' to a user`,
     usage: `sendreward <user>`,
@@ -19,11 +25,23 @@ module.exports = {
     options: [{
         name: `user`,
         description: `The user you would like to send to`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.User
     }, {
         name: `package_name`,
         description: `The name of the reward package`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.String,
         autocomplete: true

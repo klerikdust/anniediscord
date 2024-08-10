@@ -6,6 +6,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `ask`,
+    name_localizations: {
+        fr: `demander`
+    },
+    description_localizations: {
+        fr: `Vous pouvez poser n'importe quelle question et Annie vous répondra.`
+    },
     aliases: [`8ball`],
     description: `You can ask any question and Annie will answer you.`,
     usage: `ask <Message>`,
@@ -15,7 +21,18 @@ module.exports = {
     messageCommand: true,
     server_specific: false,
     options: [
-        { name: `question`, description: `Type out your question.`, required: true, type: ApplicationCommandOptionType.String }
+        {
+            name: `question`,
+            description: `Type out your question.`,
+            name_localizations: {
+                fr: ``
+            },
+            description_localizations: {
+                fr: ``
+            },
+            required: true,
+            type: ApplicationCommandOptionType.String
+        }
     ],
     type: ApplicationCommandType.ChatInput,
     async execute(client, reply, message, arg, locale) {

@@ -14,7 +14,7 @@ module.exports = {
 	multiUser: false,
 	applicationCommand: false,
 	messageCommand: true,
-    server_specific: false,
+	server_specific: false,
 	commandpediaButton: `📖`,
 	ignoreGroups: [`developer`],
 	async execute(client, reply, message, arg, locale, prefix) {

@@ -7,6 +7,12 @@ const getBotInviteUrl = require(`../../utils/botInvite.js`)
  */
 module.exports = {
     name: `invite`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`serverinvite`, `serverlink`, `linkserver`, `invitelink`, `invite`, `botinvite`, `invitebot`],
     description: `Generates Support Server & Bot Invitation link`,
     usage: `invite`,

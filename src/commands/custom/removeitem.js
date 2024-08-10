@@ -14,6 +14,12 @@ module.exports = {
      * @type {string}
      */
     name: `removeitem`,
+    name_localizations: {
+        fr: `supprimer un élément`
+    },
+    description_localizations: {
+        fr: `supprimer des éléments d'un utilisateur ou de tous les utilisateurs.`
+    },
     /**
      * Define accepted aliases. User will be able to call the command with these alternative names.
      * @required
@@ -70,6 +76,12 @@ module.exports = {
      */
     options: [{
         name: `amount`, // Must be all lowercase
+        name_localizations: {
+            fr: `montant`
+        },
+        description_localizations: {
+            fr: `Le montant auquel définir les éléments`
+        },
         description: `The amount to set the items to`,
         required: true,
         type: ApplicationCommandOptionType.Integer,
@@ -77,11 +89,23 @@ module.exports = {
     }, {
         name: `allusers`, // Must be all lowercase
         description: `Toggle for all users`,
+        name_localizations: {
+            fr: `tous les utilisateurs`
+        },
+        description_localizations: {
+            fr: `Basculer pour tous les utilisateurs`
+        },
         required: true,
         type: ApplicationCommandOptionType.Boolean
     }, {
         name: `user`, // Must be all lowercase
         description: `The user you wish to edit`,
+        name_localizations: {
+            fr: `utilisateur`
+        },
+        description_localizations: {
+            fr: `L'utilisateur que vous souhaitez modifier`
+        },
         required: false,
         type: ApplicationCommandOptionType.User
     }],
@@ -102,7 +126,7 @@ module.exports = {
      * @required ONLY if "server_specific" is set to true.
      * @type {Array}
      */
-    servers: [`577121315480272908`,`882552960771555359`],
+    servers: [`577121315480272908`, `882552960771555359`],
     /**
      * Any other properties you want to add to the command.
      */
@@ -136,7 +160,7 @@ module.exports = {
         const itemId = messageRef.guild.configs.get(itemConfigId).value
         const item = await client.db.shop.getItem(Number(itemId), messageRef.guild.id)
         if (!item) return await reply.send(`Please run \`setitem\` first.`)
-            
+
         const amount = args[0]
         const allUsers = args[1]
         const user = args[2]

@@ -12,6 +12,12 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require(`discor
  */
 module.exports = {
     name: `gacha`,
+    name_localizations: {
+        fr: ``
+    },
+    description_localizations: {
+        fr: ``
+    },
     aliases: [`gch`, `gacha`, `reroll`],
     description: `Opens a Lucky Ticket and wins various rewards such as card collection and cosmetic items!`,
     usage: `gacha <Amount>`,
@@ -24,6 +30,12 @@ module.exports = {
     options: [{
         name: `amount`,
         description: `Amount of tickets to open`,
+        name_localizations: {
+            fr: ``
+        },
+        description_localizations: {
+            fr: ``
+        },
         required: true,
         type: ApplicationCommandOptionType.Integer,
         choices: [{ name: `one`, value: 1 }, { name: `ten`, value: 10 }, { name: `1`, value: 1 }, { name: `10`, value: 10 }]
@@ -60,7 +72,7 @@ module.exports = {
                 emoji: await client.getEmoji(`692428927620087850`)
             }
         })
-        
+
         if (await client.db.databaseUtils.doesCacheExist(instanceId)) return await reply.send(locale.GACHA.SESSION_STILL_ACTIVE)
         /**
          * --------------------
@@ -77,7 +89,7 @@ module.exports = {
         const c = new Confirmator(messageRef, reply, locale)
         await c.setup(messageRef.member.id, suggestToBuy)
         //  Timeout in 30 seconds
-        client.db.databaseUtils.setCache(instanceId,`1`,{EX:30})
+        client.db.databaseUtils.setCache(instanceId, `1`, { EX: 30 })
         c.onAccept(async () => {
             //  Deduct balance & deliver lucky tickets
             await client.db.databaseUtils.updateInventory({ itemId: 52, value: amountToPay, operation: `-`, userId: messageRef.member.id, guildId: messageRef.guild.id })
