@@ -62,7 +62,7 @@
     "pixiv-img": "^1.0.0",
     "redis": "^4.7.0",
     "string-similarity": "^4.0.2",
-    "superagent": "^10.1.0",
+    "superagent": "^10.1.1",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
