@@ -51,7 +51,7 @@
     "csv-stringify": "^6.5.1",
     "discord.js": "^14.16.3",
     "eslint": "^9.11.1",
-    "express": "^4.21.0",
+    "express": "^4.21.2",
     "fs-nextra": "^0.5.1",
     "knex": "^3.1.0",
     "node-cmd": "^5.0.0",
